@@ -1,17 +1,20 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Wifi } from "lucide-react";
+import { Link, useRouterState } from "@tanstack/react-router";
 
 const links = [
-  { href: "#planos", label: "Planos" },
-  { href: "#servicos", label: "Serviços" },
-  { href: "#cobertura", label: "Cobertura" },
-  { href: "#sobre", label: "Sobre" },
-  { href: "#contato", label: "Contato" },
-];
+  { to: "/para-sua-casa", label: "Para você" },
+  { to: "/para-sua-empresa", label: "Empresa" },
+  { to: "/movel", label: "Móvel" },
+  { to: "/camera", label: "Câmera" },
+  { to: "/amizade-turbinada", label: "Indique" },
+  { to: "/sobre", label: "Sobre" },
+] as const;
 
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -19,6 +22,10 @@ export function Nav() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <header
@@ -29,22 +36,27 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2 font-display font-bold text-lg">
+        <Link to="/" className="flex items-center gap-2 font-display font-bold text-lg">
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
             <Wifi className="h-4 w-4" />
           </span>
           <span>Portal <span className="text-gradient-brand">Itaipu</span></span>
-        </a>
+        </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-muted-foreground">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-foreground transition-colors">
+            <Link
+              key={l.to}
+              to={l.to}
+              className="hover:text-foreground transition-colors"
+              activeProps={{ className: "text-foreground" }}
+            >
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <a
             href="https://wa.me/554535591665"
             target="_blank"
@@ -56,7 +68,7 @@ export function Nav() {
         </div>
 
         <button
-          className="md:hidden p-2 rounded-lg hover:bg-muted"
+          className="lg:hidden p-2 rounded-lg hover:bg-muted"
           onClick={() => setOpen((v) => !v)}
           aria-label="Menu"
         >
@@ -65,17 +77,16 @@ export function Nav() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl">
+        <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur-xl">
           <div className="px-6 py-6 flex flex-col gap-4">
             {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
+              <Link
+                key={l.to}
+                to={l.to}
                 className="text-base font-medium"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
             <a
               href="https://wa.me/554535591665"

@@ -1,4 +1,5 @@
 import { Wifi, Instagram, Facebook, Phone, MapPin } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export function Footer() {
   return (
@@ -39,12 +40,14 @@ export function Footer() {
           </div>
 
           <div>
-            <div className="font-semibold text-sm mb-4">Navegação</div>
+            <div className="font-semibold text-sm mb-4">Planos</div>
             <ul className="space-y-2.5 text-sm text-muted-foreground">
-              <li><a href="#planos" className="hover:text-foreground">Planos</a></li>
-              <li><a href="#servicos" className="hover:text-foreground">Serviços</a></li>
-              <li><a href="#cobertura" className="hover:text-foreground">Cobertura</a></li>
-              <li><a href="#sobre" className="hover:text-foreground">Sobre</a></li>
+              <li><Link to="/para-sua-casa" className="hover:text-foreground">Para você</Link></li>
+              <li><Link to="/para-sua-empresa" className="hover:text-foreground">Para sua empresa</Link></li>
+              <li><Link to="/movel" className="hover:text-foreground">Móvel</Link></li>
+              <li><Link to="/camera" className="hover:text-foreground">Câmera</Link></li>
+              <li><Link to="/amizade-turbinada" className="hover:text-foreground">Amizade Turbinada</Link></li>
+              <li><Link to="/sobre" className="hover:text-foreground">Sobre nós</Link></li>
             </ul>
           </div>
 

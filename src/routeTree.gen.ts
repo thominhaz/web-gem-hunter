@@ -9,8 +9,44 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as ParaSuaEmpresaRouteImport } from './routes/para-sua-empresa'
+import { Route as ParaSuaCasaRouteImport } from './routes/para-sua-casa'
+import { Route as MovelRouteImport } from './routes/movel'
+import { Route as CameraRouteImport } from './routes/camera'
+import { Route as AmizadeTurbinadaRouteImport } from './routes/amizade-turbinada'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SobreRoute = SobreRouteImport.update({
+  id: '/sobre',
+  path: '/sobre',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParaSuaEmpresaRoute = ParaSuaEmpresaRouteImport.update({
+  id: '/para-sua-empresa',
+  path: '/para-sua-empresa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParaSuaCasaRoute = ParaSuaCasaRouteImport.update({
+  id: '/para-sua-casa',
+  path: '/para-sua-casa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MovelRoute = MovelRouteImport.update({
+  id: '/movel',
+  path: '/movel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CameraRoute = CameraRouteImport.update({
+  id: '/camera',
+  path: '/camera',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AmizadeTurbinadaRoute = AmizadeTurbinadaRouteImport.update({
+  id: '/amizade-turbinada',
+  path: '/amizade-turbinada',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +55,116 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/amizade-turbinada': typeof AmizadeTurbinadaRoute
+  '/camera': typeof CameraRoute
+  '/movel': typeof MovelRoute
+  '/para-sua-casa': typeof ParaSuaCasaRoute
+  '/para-sua-empresa': typeof ParaSuaEmpresaRoute
+  '/sobre': typeof SobreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/amizade-turbinada': typeof AmizadeTurbinadaRoute
+  '/camera': typeof CameraRoute
+  '/movel': typeof MovelRoute
+  '/para-sua-casa': typeof ParaSuaCasaRoute
+  '/para-sua-empresa': typeof ParaSuaEmpresaRoute
+  '/sobre': typeof SobreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/amizade-turbinada': typeof AmizadeTurbinadaRoute
+  '/camera': typeof CameraRoute
+  '/movel': typeof MovelRoute
+  '/para-sua-casa': typeof ParaSuaCasaRoute
+  '/para-sua-empresa': typeof ParaSuaEmpresaRoute
+  '/sobre': typeof SobreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/amizade-turbinada'
+    | '/camera'
+    | '/movel'
+    | '/para-sua-casa'
+    | '/para-sua-empresa'
+    | '/sobre'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/amizade-turbinada'
+    | '/camera'
+    | '/movel'
+    | '/para-sua-casa'
+    | '/para-sua-empresa'
+    | '/sobre'
+  id:
+    | '__root__'
+    | '/'
+    | '/amizade-turbinada'
+    | '/camera'
+    | '/movel'
+    | '/para-sua-casa'
+    | '/para-sua-empresa'
+    | '/sobre'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AmizadeTurbinadaRoute: typeof AmizadeTurbinadaRoute
+  CameraRoute: typeof CameraRoute
+  MovelRoute: typeof MovelRoute
+  ParaSuaCasaRoute: typeof ParaSuaCasaRoute
+  ParaSuaEmpresaRoute: typeof ParaSuaEmpresaRoute
+  SobreRoute: typeof SobreRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sobre': {
+      id: '/sobre'
+      path: '/sobre'
+      fullPath: '/sobre'
+      preLoaderRoute: typeof SobreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/para-sua-empresa': {
+      id: '/para-sua-empresa'
+      path: '/para-sua-empresa'
+      fullPath: '/para-sua-empresa'
+      preLoaderRoute: typeof ParaSuaEmpresaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/para-sua-casa': {
+      id: '/para-sua-casa'
+      path: '/para-sua-casa'
+      fullPath: '/para-sua-casa'
+      preLoaderRoute: typeof ParaSuaCasaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/movel': {
+      id: '/movel'
+      path: '/movel'
+      fullPath: '/movel'
+      preLoaderRoute: typeof MovelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/camera': {
+      id: '/camera'
+      path: '/camera'
+      fullPath: '/camera'
+      preLoaderRoute: typeof CameraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/amizade-turbinada': {
+      id: '/amizade-turbinada'
+      path: '/amizade-turbinada'
+      fullPath: '/amizade-turbinada'
+      preLoaderRoute: typeof AmizadeTurbinadaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +177,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AmizadeTurbinadaRoute: AmizadeTurbinadaRoute,
+  CameraRoute: CameraRoute,
+  MovelRoute: MovelRoute,
+  ParaSuaCasaRoute: ParaSuaCasaRoute,
+  ParaSuaEmpresaRoute: ParaSuaEmpresaRoute,
+  SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
