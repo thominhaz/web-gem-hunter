@@ -79,7 +79,7 @@ const perks = [
 function Page() {
   return (
     <>
-      <PageHero
+      <PageHero variant="coral"
         eyebrow="Planos residenciais"
         title="Mais velocidade, mais estabilidade,"
         highlight="mais internet do seu jeito."

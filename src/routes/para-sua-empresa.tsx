@@ -85,7 +85,7 @@ const features = [
 function Page() {
   return (
     <>
-      <PageHero
+      <PageHero variant="blue"
         eyebrow="Para sua empresa"
         title="Atendimento prioritário e"
         highlight="conectividade inteligente."

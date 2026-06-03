@@ -77,7 +77,7 @@ const perks = [
 function Page() {
   return (
     <>
-      <PageHero
+      <PageHero variant="violet"
         eyebrow="Portal Itaipu Móvel"
         title="A internet móvel com a"
         highlight="melhor cobertura do país."

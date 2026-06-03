@@ -48,7 +48,7 @@ const values = [
 function Page() {
   return (
     <>
-      <PageHero
+      <PageHero variant="sunset"
         eyebrow="Sobre nós"
         title="Conectando a cidade, o campo"
         highlight="e o seu negócio."
