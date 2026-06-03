@@ -1,13 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Nav } from "@/components/site/Nav";
 import { Hero } from "@/components/site/Hero";
 import { Plans } from "@/components/site/Plans";
 import { Services } from "@/components/site/Services";
 import { Coverage } from "@/components/site/Coverage";
 import { About } from "@/components/site/About";
 import { CTA } from "@/components/site/CTA";
-import { Footer } from "@/components/site/Footer";
-import { WhatsAppFAB } from "@/components/site/WhatsAppFAB";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,10 +24,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
     ],
     links: [
-      {
-        rel: "preconnect",
-        href: "https://fonts.googleapis.com",
-      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
@@ -43,18 +37,13 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Nav />
-      <main>
-        <Hero />
-        <Plans />
-        <Services />
-        <Coverage />
-        <About />
-        <CTA />
-      </main>
-      <Footer />
-      <WhatsAppFAB />
-    </div>
+    <>
+      <Hero />
+      <Plans />
+      <Services />
+      <Coverage />
+      <About />
+      <CTA />
+    </>
   );
 }
