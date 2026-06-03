@@ -8,7 +8,7 @@ const links = [
   { to: "/para-sua-empresa", label: "Empresa" },
   { to: "/movel", label: "Móvel" },
   { to: "/camera", label: "Câmera" },
-  { to: "/amizade-turbinada", label: "Indique" },
+  { to: "/amizade-turbinada", label: "Amizade Turbinada" },
   { to: "/sobre", label: "Sobre" },
 ] as const;
 
