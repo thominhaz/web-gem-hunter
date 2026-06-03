@@ -1,15 +1,12 @@
 import { ArrowRight, Zap } from "lucide-react";
 import heroImg from "@/assets/hero-fiber.jpg";
 import logoAsset from "@/assets/portal-itaipu-logo.png.asset.json";
+import { AmbientBackground } from "./AmbientBackground";
 
 export function Hero() {
   return (
     <section id="top" className="relative pt-32 pb-24 lg:pt-44 lg:pb-32 overflow-hidden">
-      {/* background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 grid-pattern opacity-40" />
-        <div className="absolute inset-0 bg-gradient-radial" />
-      </div>
+      <AmbientBackground />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
