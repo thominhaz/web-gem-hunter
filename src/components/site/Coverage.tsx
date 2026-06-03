@@ -1,15 +1,15 @@
 import { MapPin, Search } from "lucide-react";
 
 const cities = [
-  "Foz do Iguaçu",
-  "Santa Terezinha de Itaipu",
-  "São Miguel do Iguaçu",
-  "Medianeira",
-  "Matelândia",
-  "Céu Azul",
+  "Diamante D'Oeste",
   "Itaipulândia",
   "Missal",
-  "Vera Cruz do Oeste",
+  "Santa Helena",
+  "Medianeira",
+  "São Miguel do Iguaçu",
+  "Serranópolis do Iguaçu",
+  "Matelândia",
+  "Ramilândia",
 ];
 
 export function Coverage() {
