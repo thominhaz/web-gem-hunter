@@ -110,7 +110,7 @@ export function AmbientBackground({
 
       {/* LEFT wave */}
       <svg
-        className="absolute left-0 top-1/4 h-[120%] w-[55%] opacity-[0.18] will-change-transform"
+        className="absolute left-0 top-1/4 h-[120%] w-[55%] opacity-40 will-change-transform"
         viewBox="0 0 600 1200"
         fill="none"
         preserveAspectRatio="none"
