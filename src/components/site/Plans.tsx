@@ -131,7 +131,9 @@ export function Plans() {
         </div>
 
         <p className="mt-8 text-center text-sm text-muted-foreground">
-          Precisa de plano empresarial? <a href="#servicos" className="text-foreground font-medium underline underline-offset-4">Veja soluções para negócios →</a>
+          Quer ver todos os planos residenciais? <a href="/para-sua-casa" className="text-foreground font-medium underline underline-offset-4">Conheça a linha completa →</a>
+          {" · "}
+          <a href="/para-sua-empresa" className="text-foreground font-medium underline underline-offset-4">Soluções para empresas →</a>
         </p>
       </div>
     </section>
