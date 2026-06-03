@@ -1,6 +1,6 @@
 import { ArrowRight, Zap } from "lucide-react";
 import heroImg from "@/assets/hero-fiber.jpg";
-import logoAsset from "@/assets/portal-itaipu-logo.png.asset.json";
+import logoStacked from "@/assets/portal-itaipu-logo-stacked.png.asset.json";
 import { AmbientBackground } from "./AmbientBackground";
 
 export function Hero() {
