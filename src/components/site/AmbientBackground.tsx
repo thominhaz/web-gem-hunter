@@ -1,17 +1,114 @@
 import { useEffect, useRef } from "react";
 
-/**
- * Decorative ambient background with magenta/pink orbs and side waves.
- * Uses passive scroll listener + rAF to drive a subtle parallax via CSS vars.
- */
+export type AmbientVariant =
+  | "magenta" // default (home)
+  | "blue"
+  | "coral"
+  | "violet"
+  | "teal"
+  | "sunset";
+
+type Palette = {
+  base: [string, string, string];
+  left: string;
+  right: string;
+  center: string;
+  accentA: string;
+  accentB: string;
+  waveLA: string;
+  waveLB: string;
+  waveRA: string;
+  waveRB: string;
+};
+
+const PALETTES: Record<AmbientVariant, Palette> = {
+  magenta: {
+    base: ["oklch(0.95 0.06 340)", "oklch(0.97 0.04 350)", "oklch(0.96 0.05 320)"],
+    left: "oklch(0.7 0.27 340 / 0.95)",
+    right: "oklch(0.75 0.25 355 / 0.95)",
+    center: "oklch(0.65 0.28 325 / 0.8)",
+    accentA: "oklch(0.72 0.24 20 / 0.7)",
+    accentB: "oklch(0.65 0.27 340 / 0.7)",
+    waveLA: "oklch(0.65 0.24 340)",
+    waveLB: "oklch(0.7 0.22 20)",
+    waveRA: "oklch(0.7 0.22 350)",
+    waveRB: "oklch(0.6 0.22 265)",
+  },
+  blue: {
+    base: ["oklch(0.95 0.05 250)", "oklch(0.97 0.03 260)", "oklch(0.96 0.04 280)"],
+    left: "oklch(0.7 0.22 260 / 0.95)",
+    right: "oklch(0.72 0.2 280 / 0.95)",
+    center: "oklch(0.6 0.24 250 / 0.8)",
+    accentA: "oklch(0.7 0.22 200 / 0.7)",
+    accentB: "oklch(0.65 0.25 270 / 0.7)",
+    waveLA: "oklch(0.6 0.22 265)",
+    waveLB: "oklch(0.68 0.2 220)",
+    waveRA: "oklch(0.65 0.24 280)",
+    waveRB: "oklch(0.6 0.22 320)",
+  },
+  coral: {
+    base: ["oklch(0.96 0.05 30)", "oklch(0.97 0.04 20)", "oklch(0.96 0.05 10)"],
+    left: "oklch(0.72 0.24 20 / 0.95)",
+    right: "oklch(0.75 0.22 35 / 0.95)",
+    center: "oklch(0.68 0.26 15 / 0.8)",
+    accentA: "oklch(0.72 0.24 350 / 0.7)",
+    accentB: "oklch(0.7 0.23 40 / 0.7)",
+    waveLA: "oklch(0.7 0.22 20)",
+    waveLB: "oklch(0.68 0.22 350)",
+    waveRA: "oklch(0.7 0.22 35)",
+    waveRB: "oklch(0.65 0.24 340)",
+  },
+  violet: {
+    base: ["oklch(0.95 0.05 300)", "oklch(0.97 0.04 310)", "oklch(0.96 0.05 290)"],
+    left: "oklch(0.68 0.25 295 / 0.95)",
+    right: "oklch(0.7 0.23 320 / 0.95)",
+    center: "oklch(0.62 0.27 305 / 0.8)",
+    accentA: "oklch(0.7 0.23 280 / 0.7)",
+    accentB: "oklch(0.68 0.25 340 / 0.7)",
+    waveLA: "oklch(0.65 0.25 300)",
+    waveLB: "oklch(0.6 0.22 265)",
+    waveRA: "oklch(0.7 0.22 320)",
+    waveRB: "oklch(0.65 0.24 340)",
+  },
+  teal: {
+    base: ["oklch(0.95 0.05 190)", "oklch(0.97 0.04 200)", "oklch(0.96 0.05 170)"],
+    left: "oklch(0.72 0.18 195 / 0.95)",
+    right: "oklch(0.74 0.18 180 / 0.95)",
+    center: "oklch(0.65 0.2 200 / 0.8)",
+    accentA: "oklch(0.72 0.2 160 / 0.7)",
+    accentB: "oklch(0.68 0.2 220 / 0.7)",
+    waveLA: "oklch(0.65 0.2 195)",
+    waveLB: "oklch(0.6 0.22 265)",
+    waveRA: "oklch(0.7 0.18 180)",
+    waveRB: "oklch(0.65 0.22 220)",
+  },
+  sunset: {
+    base: ["oklch(0.95 0.05 50)", "oklch(0.97 0.04 30)", "oklch(0.96 0.05 350)"],
+    left: "oklch(0.74 0.22 50 / 0.95)",
+    right: "oklch(0.72 0.24 10 / 0.95)",
+    center: "oklch(0.65 0.26 30 / 0.8)",
+    accentA: "oklch(0.75 0.22 70 / 0.7)",
+    accentB: "oklch(0.68 0.25 340 / 0.7)",
+    waveLA: "oklch(0.7 0.22 40)",
+    waveLB: "oklch(0.65 0.24 340)",
+    waveRA: "oklch(0.7 0.22 20)",
+    waveRB: "oklch(0.6 0.22 280)",
+  },
+};
+
 export function AmbientBackground({
   intensity = 1,
+  variant = "magenta",
   className = "",
 }: {
   intensity?: number;
+  variant?: AmbientVariant;
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const p = PALETTES[variant] ?? PALETTES.magenta;
+  const gid = `wL-${variant}`;
+  const gid2 = `wR-${variant}`;
 
   useEffect(() => {
     const el = ref.current;
@@ -45,70 +142,55 @@ export function AmbientBackground({
       aria-hidden
       className={`pointer-events-none absolute inset-0 z-0 overflow-hidden ${className}`}
       style={{
-        // defaults so the layout is stable before scroll fires
         ["--py" as any]: "0px",
         ["--py-slow" as any]: "0px",
         ["--py-fast" as any]: "0px",
       }}
     >
-      {/* base wash — pink tint */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[oklch(0.95_0.06_340)] via-[oklch(0.97_0.04_350)] to-[oklch(0.96_0.05_320)]" />
-
-      {/* grid */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(135deg, ${p.base[0]}, ${p.base[1]}, ${p.base[2]})`,
+        }}
+      />
       <div className="absolute inset-0 grid-pattern opacity-[0.35]" />
 
-      {/* LEFT magenta orb */}
       <div
         className="absolute -left-40 top-[-10%] h-[44rem] w-[44rem] rounded-full blur-3xl will-change-transform"
         style={{
-          background:
-            "radial-gradient(circle at 30% 30%, oklch(0.7 0.27 340 / 0.95), oklch(0.7 0.27 340 / 0) 65%)",
+          background: `radial-gradient(circle at 30% 30%, ${p.left}, transparent 65%)`,
           transform: "translate3d(0, calc(var(--py-slow) * -1), 0)",
         }}
       />
-
-      {/* RIGHT pink/coral orb */}
       <div
         className="absolute -right-48 top-[15%] h-[42rem] w-[42rem] rounded-full blur-3xl will-change-transform"
         style={{
-          background:
-            "radial-gradient(circle at 70% 40%, oklch(0.75 0.25 355 / 0.95), oklch(0.75 0.25 355 / 0) 65%)",
+          background: `radial-gradient(circle at 70% 40%, ${p.right}, transparent 65%)`,
           transform: "translate3d(0, var(--py), 0)",
         }}
       />
-
-      {/* CENTER-BOTTOM violet glow */}
       <div
         className="absolute left-1/2 -translate-x-1/2 bottom-[-14rem] h-[40rem] w-[64rem] rounded-full blur-3xl will-change-transform"
         style={{
-          background:
-            "radial-gradient(ellipse at 50% 50%, oklch(0.65 0.28 325 / 0.8), oklch(0.65 0.28 325 / 0) 60%)",
+          background: `radial-gradient(ellipse at 50% 50%, ${p.center}, transparent 60%)`,
           transform: "translate3d(0, calc(var(--py-fast) * -1), 0)",
         }}
       />
-
-      {/* small accent orb top right (coral) */}
       <div
         className="absolute right-[10%] top-[6%] h-56 w-56 rounded-full blur-2xl will-change-transform"
         style={{
-          background:
-            "radial-gradient(circle, oklch(0.72 0.24 20 / 0.7), transparent 70%)",
+          background: `radial-gradient(circle, ${p.accentA}, transparent 70%)`,
           transform: "translate3d(0, var(--py-fast), 0)",
         }}
       />
-
-      {/* small accent orb mid-left (magenta) */}
       <div
         className="absolute left-[8%] top-[55%] h-48 w-48 rounded-full blur-2xl will-change-transform"
         style={{
-          background:
-            "radial-gradient(circle, oklch(0.65 0.27 340 / 0.7), transparent 70%)",
+          background: `radial-gradient(circle, ${p.accentB}, transparent 70%)`,
           transform: "translate3d(0, calc(var(--py) * -1), 0)",
         }}
       />
 
-
-      {/* LEFT wave */}
       <svg
         className="absolute left-0 top-1/4 h-[120%] w-[55%] opacity-40 will-change-transform"
         viewBox="0 0 600 1200"
@@ -117,26 +199,15 @@ export function AmbientBackground({
         style={{ transform: "translate3d(0, calc(var(--py-slow) * -1), 0)" }}
       >
         <defs>
-          <linearGradient id="wL" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="oklch(0.65 0.24 340)" />
-            <stop offset="100%" stopColor="oklch(0.7 0.22 20)" stopOpacity="0" />
+          <linearGradient id={gid} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor={p.waveLA} />
+            <stop offset="100%" stopColor={p.waveLB} stopOpacity="0" />
           </linearGradient>
         </defs>
-        <path
-          d="M-50,200 C150,300 250,500 100,700 C-50,900 200,1000 -50,1200 L-50,0 Z"
-          stroke="url(#wL)"
-          strokeWidth="2"
-          fill="none"
-        />
-        <path
-          d="M-100,400 C200,500 300,700 150,900 C0,1100 250,1200 -100,1300 L-100,200 Z"
-          stroke="url(#wL)"
-          strokeWidth="2"
-          fill="none"
-        />
+        <path d="M-50,200 C150,300 250,500 100,700 C-50,900 200,1000 -50,1200 L-50,0 Z" stroke={`url(#${gid})`} strokeWidth="2" fill="none" />
+        <path d="M-100,400 C200,500 300,700 150,900 C0,1100 250,1200 -100,1300 L-100,200 Z" stroke={`url(#${gid})`} strokeWidth="2" fill="none" />
       </svg>
 
-      {/* RIGHT wave */}
       <svg
         className="absolute right-0 top-0 h-[120%] w-[55%] opacity-40 will-change-transform"
         viewBox="0 0 600 1200"
@@ -145,26 +216,15 @@ export function AmbientBackground({
         style={{ transform: "translate3d(0, var(--py), 0) scaleX(-1)" }}
       >
         <defs>
-          <linearGradient id="wR" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="oklch(0.7 0.22 350)" />
-            <stop offset="100%" stopColor="oklch(0.6 0.22 265)" stopOpacity="0" />
+          <linearGradient id={gid2} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor={p.waveRA} />
+            <stop offset="100%" stopColor={p.waveRB} stopOpacity="0" />
           </linearGradient>
         </defs>
-        <path
-          d="M-50,150 C150,280 280,460 120,680 C-40,900 220,1000 -50,1250 L-50,0 Z"
-          stroke="url(#wR)"
-          strokeWidth="2"
-          fill="none"
-        />
-        <path
-          d="M-100,350 C180,480 320,660 160,880 C0,1100 240,1200 -100,1350 L-100,150 Z"
-          stroke="url(#wR)"
-          strokeWidth="2"
-          fill="none"
-        />
+        <path d="M-50,150 C150,280 280,460 120,680 C-40,900 220,1000 -50,1250 L-50,0 Z" stroke={`url(#${gid2})`} strokeWidth="2" fill="none" />
+        <path d="M-100,350 C180,480 320,660 160,880 C0,1100 240,1200 -100,1350 L-100,150 Z" stroke={`url(#${gid2})`} strokeWidth="2" fill="none" />
       </svg>
 
-      {/* subtle noise/grain for premium feel */}
       <div
         className="absolute inset-0 opacity-[0.04] mix-blend-overlay"
         style={{
@@ -173,7 +233,6 @@ export function AmbientBackground({
         }}
       />
 
-      {/* fade to background at the bottom for clean handoff */}
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
     </div>
   );
