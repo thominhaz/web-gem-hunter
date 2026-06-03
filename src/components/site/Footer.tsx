@@ -1,6 +1,6 @@
 import { Instagram, Facebook, Phone, MapPin } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import logoAsset from "@/assets/portal-itaipu-logo.png.asset.json";
+import logoStacked from "@/assets/portal-itaipu-logo-stacked.png.asset.json";
 
 export function Footer() {
   return (
@@ -8,13 +8,20 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16">
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-2">
-            <a href="/" aria-label="Portal Itaipu" className="inline-flex items-center rounded-xl bg-white shadow-card px-3 py-2">
-              <img src={logoAsset.url} alt="Portal Itaipu" className="h-8 w-auto" draggable={false} />
+            <a href="/" aria-label="Portal Itaipu" className="inline-flex items-center">
+              <img
+                src={logoStacked.url}
+                alt="Portal Itaipu — Internet Fibra"
+                className="h-28 md:h-32 w-auto select-none"
+                draggable={false}
+                style={{ filter: "drop-shadow(0 8px 20px oklch(0.55 0.28 340 / 0.25))" }}
+              />
             </a>
             <p className="mt-4 text-sm text-muted-foreground max-w-sm">
               Referência em internet fibra óptica no Oeste do Paraná há 20 anos.
               Conectando pessoas, empresas e comunidades.
             </p>
+
             <div className="mt-5 flex gap-3">
               <a
                 href="https://www.instagram.com/portalitaipu1/"
