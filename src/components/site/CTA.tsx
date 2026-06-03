@@ -4,7 +4,10 @@ export function CTA() {
   return (
     <section id="contato" className="py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-brand p-10 md:p-16 text-primary-foreground shadow-glow">
+        <div
+          data-reveal-scale
+          className="relative overflow-hidden rounded-[2.5rem] bg-gradient-brand p-10 md:p-16 text-primary-foreground shadow-glow"
+        >
           <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-white/20 blur-3xl" />
           <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
 

@@ -18,7 +18,7 @@ export function Coverage() {
       <div className="absolute inset-0 -z-10 grid-pattern opacity-30" />
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-14 items-center">
-          <div>
+          <div data-reveal>
             <div className="text-xs font-semibold uppercase tracking-wider text-primary">
               <MapPin className="inline h-3.5 w-3.5 mr-1" /> Cobertura
             </div>
@@ -55,12 +55,12 @@ export function Coverage() {
             </form>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {cities.map((c, i) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3" data-reveal-group>
+            {cities.map((c) => (
               <div
                 key={c}
+                data-reveal
                 className="rounded-2xl border border-border bg-surface-elevated px-4 py-5 text-sm font-medium hover:border-primary/40 hover:shadow-card-hover transition"
-                style={{ animationDelay: `${i * 0.04}s` }}
               >
                 <MapPin className="h-4 w-4 text-primary mb-2" />
                 {c}

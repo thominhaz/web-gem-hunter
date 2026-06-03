@@ -13,7 +13,7 @@ export function Services() {
   return (
     <section id="servicos" className="py-24 lg:py-32 bg-surface">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6" data-reveal>
           <div className="max-w-2xl">
             <div className="text-xs font-semibold uppercase tracking-wider text-primary">
               Para casa, campo e negócios
@@ -28,13 +28,14 @@ export function Services() {
           </p>
         </div>
 
-        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" data-reveal-group>
           {items.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
+              data-reveal
               className="group relative rounded-3xl p-7 bg-surface-elevated border border-border hover:border-primary/40 hover:-translate-y-1 transition-all shadow-card hover:shadow-card-hover"
             >
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-brand text-primary-foreground shadow-glow">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
                 <Icon className="h-5 w-5" />
               </div>
               <h3 className="mt-5 font-display text-xl font-bold">{title}</h3>

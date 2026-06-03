@@ -46,7 +46,7 @@ export function Plans() {
   return (
     <section id="planos" className="py-24 lg:py-32 relative">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl" data-reveal>
           <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-primary">
             <Sparkles className="h-3.5 w-3.5" /> Planos residenciais
           </div>
@@ -59,16 +59,16 @@ export function Plans() {
           </p>
         </div>
 
-        <div className="mt-14 grid md:grid-cols-3 gap-6">
-          {plans.map((p, i) => (
+        <div className="mt-14 grid md:grid-cols-3 gap-6" data-reveal-group>
+          {plans.map((p) => (
             <article
               key={p.name}
+              data-reveal
               className={`relative rounded-3xl p-8 border transition-all hover:-translate-y-1 ${
                 p.highlight
                   ? "bg-foreground text-background border-foreground shadow-glow"
                   : "bg-surface-elevated border-border shadow-card hover:shadow-card-hover"
               }`}
-              style={{ animationDelay: `${i * 0.08}s` }}
             >
               {p.highlight && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-brand text-primary-foreground text-xs font-semibold px-4 py-1.5 shadow-glow">
