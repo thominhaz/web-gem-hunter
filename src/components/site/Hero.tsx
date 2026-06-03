@@ -1,5 +1,6 @@
 import { ArrowRight, Zap } from "lucide-react";
 import heroImg from "@/assets/hero-fiber.jpg";
+import logoAsset from "@/assets/portal-itaipu-logo.png.asset.json";
 
 export function Hero() {
   return (
@@ -13,6 +14,15 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="animate-fade-up">
+            <div className="inline-flex items-center rounded-2xl bg-white shadow-card px-4 py-3 mb-6">
+              <img
+                src={logoAsset.url}
+                alt="Portal Itaipu — Internet Fibra"
+                className="h-10 md:h-12 w-auto select-none"
+                draggable={false}
+              />
+            </div>
+
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-elevated/70 backdrop-blur px-4 py-1.5 text-xs font-medium text-muted-foreground">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-primary animate-ping opacity-75" />
