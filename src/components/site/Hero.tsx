@@ -1,6 +1,6 @@
 import { ArrowRight, Zap } from "lucide-react";
 import heroImg from "@/assets/hero-fiber.jpg";
-import logoAsset from "@/assets/portal-itaipu-logo.png.asset.json";
+import logoStacked from "@/assets/portal-itaipu-logo-stacked.png.asset.json";
 import { AmbientBackground } from "./AmbientBackground";
 
 export function Hero() {
@@ -11,12 +11,16 @@ export function Hero() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="animate-fade-up">
-            <div className="inline-flex items-center rounded-2xl bg-white shadow-card px-4 py-3 mb-6">
+            <div className="mb-8 flex items-center">
               <img
-                src={logoAsset.url}
+                src={logoStacked.url}
                 alt="Portal Itaipu — Internet Fibra"
-                className="h-10 md:h-12 w-auto select-none"
+                className="h-36 md:h-44 w-auto select-none"
                 draggable={false}
+                style={{
+                  filter:
+                    "drop-shadow(0 12px 30px oklch(0.55 0.28 340 / 0.35))",
+                }}
               />
             </div>
 
