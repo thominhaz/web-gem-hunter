@@ -8,7 +8,7 @@ export function Hero() {
     <section id="top" className="relative pt-32 pb-24 lg:pt-44 lg:pb-32 overflow-hidden">
       <AmbientBackground />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="animate-fade-up">
             <div className="inline-flex items-center rounded-2xl bg-white shadow-card px-4 py-3 mb-6">
