@@ -14,7 +14,19 @@ export function RevealObserver() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
+    const root = document.documentElement;
+    root.classList.add("reveal-ready");
+
     const stagger = 80;
+    const revealTargets = document.querySelectorAll<HTMLElement>(
+      "[data-reveal], [data-reveal-scale]",
+    );
+
+    if (!window.IntersectionObserver) {
+      revealTargets.forEach((el) => el.classList.add("in"));
+      return () => root.classList.remove("reveal-ready");
+    }
+
     const io = new IntersectionObserver(
       (entries, obs) => {
         for (const entry of entries) {
@@ -33,6 +45,10 @@ export function RevealObserver() {
       { threshold: 0.2 },
     );
 
+    const fallback = window.setTimeout(() => {
+      revealTargets.forEach((el) => el.classList.add("in"));
+    }, 2500);
+
     const groups = document.querySelectorAll<HTMLElement>("[data-reveal-group]");
     groups.forEach((el) => io.observe(el));
 
@@ -44,7 +60,11 @@ export function RevealObserver() {
       .querySelectorAll<HTMLElement>("[data-reveal-scale]")
       .forEach((el) => io.observe(el));
 
-    return () => io.disconnect();
+    return () => {
+      window.clearTimeout(fallback);
+      io.disconnect();
+      root.classList.remove("reveal-ready");
+    };
   }, [pathname]);
 
   return null;
