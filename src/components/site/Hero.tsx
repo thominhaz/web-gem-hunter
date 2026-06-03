@@ -11,26 +11,26 @@ export function Hero() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="animate-fade-up">
-            <div className="mb-8 flex items-center">
+            <div className="mb-8 flex flex-wrap items-center gap-5">
               <img
                 src={logoStacked.url}
                 alt="Portal Itaipu — Internet Fibra"
-                className="h-36 md:h-44 w-auto select-none"
+                className="h-48 md:h-56 lg:h-64 w-auto select-none"
                 draggable={false}
                 style={{
                   filter:
                     "drop-shadow(0 12px 30px oklch(0.55 0.28 340 / 0.35))",
                 }}
               />
+              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-elevated/70 backdrop-blur px-4 py-1.5 text-xs font-medium text-muted-foreground">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-primary animate-ping opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+                </span>
+                Fibra 100% óptica · 20 anos no Oeste do Paraná
+              </div>
             </div>
 
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-elevated/70 backdrop-blur px-4 py-1.5 text-xs font-medium text-muted-foreground">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-primary animate-ping opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-              </span>
-              Fibra 100% óptica · 20 anos no Oeste do Paraná
-            </div>
 
             <h1 className="mt-6 font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.02] tracking-tight">
               Internet que <br />
