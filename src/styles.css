@@ -193,6 +193,11 @@
   opacity: 0;
   transform: translateY(24px);
 }
+.reveal-boot [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: revealBootFallback 0s linear 3s forwards;
+}
 [data-reveal].in {
   opacity: 1;
   transform: translateY(0);
@@ -208,9 +213,18 @@
   opacity: 0;
   transform: scale(.97);
 }
+.reveal-boot [data-reveal-scale] {
+  opacity: 0;
+  transform: scale(.97);
+  animation: revealBootFallback 0s linear 3s forwards;
+}
 [data-reveal-scale].in {
   opacity: 1;
   transform: scale(1);
+}
+
+@keyframes revealBootFallback {
+  to { opacity: 1; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -219,6 +233,7 @@
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+    animation: none !important;
   }
 }
 
