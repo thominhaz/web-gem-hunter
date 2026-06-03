@@ -63,7 +63,7 @@ const perks = [
 function Page() {
   return (
     <>
-      <PageHero
+      <PageHero variant="teal"
         eyebrow="Câmeras de monitoramento"
         title="Visualize sua casa ou sua obra"
         highlight="de forma prática e rápida."

@@ -227,6 +227,18 @@
   to { opacity: 1; transform: none; }
 }
 
+/* Page transition — fade + subtle rise on route change */
+.page-transition {
+  animation: pageEnter .45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-transition { animation: none !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-reveal],
   [data-reveal-scale] {

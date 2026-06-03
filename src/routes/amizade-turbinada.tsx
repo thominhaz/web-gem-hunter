@@ -41,7 +41,7 @@ function Page() {
 
   return (
     <>
-      <PageHero
+      <PageHero variant="magenta"
         eyebrow="Programa de indicação"
         title="Indique seus amigos e ganhe"
         highlight="uma mensalidade grátis."
