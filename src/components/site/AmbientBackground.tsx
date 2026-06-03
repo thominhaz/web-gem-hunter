@@ -43,7 +43,7 @@ export function AmbientBackground({
     <div
       ref={ref}
       aria-hidden
-      className={`pointer-events-none absolute inset-0 -z-10 overflow-hidden ${className}`}
+      className={`pointer-events-none absolute inset-0 z-0 overflow-hidden ${className}`}
       style={{
         // defaults so the layout is stable before scroll fires
         ["--py" as any]: "0px",
@@ -51,55 +51,66 @@ export function AmbientBackground({
         ["--py-fast" as any]: "0px",
       }}
     >
-      {/* base wash */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.985_0.02_340)] via-background to-background" />
+      {/* base wash — pink tint */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[oklch(0.95_0.06_340)] via-[oklch(0.97_0.04_350)] to-[oklch(0.96_0.05_320)]" />
 
       {/* grid */}
       <div className="absolute inset-0 grid-pattern opacity-[0.35]" />
 
       {/* LEFT magenta orb */}
       <div
-        className="absolute -left-40 top-[-10%] h-[42rem] w-[42rem] rounded-full opacity-70 blur-3xl will-change-transform"
+        className="absolute -left-40 top-[-10%] h-[44rem] w-[44rem] rounded-full blur-3xl will-change-transform"
         style={{
           background:
-            "radial-gradient(circle at 30% 30%, oklch(0.72 0.24 340 / 0.55), oklch(0.72 0.24 340 / 0) 65%)",
+            "radial-gradient(circle at 30% 30%, oklch(0.7 0.27 340 / 0.95), oklch(0.7 0.27 340 / 0) 65%)",
           transform: "translate3d(0, calc(var(--py-slow) * -1), 0)",
         }}
       />
 
       {/* RIGHT pink/coral orb */}
       <div
-        className="absolute -right-48 top-[18%] h-[38rem] w-[38rem] rounded-full opacity-70 blur-3xl will-change-transform"
+        className="absolute -right-48 top-[15%] h-[42rem] w-[42rem] rounded-full blur-3xl will-change-transform"
         style={{
           background:
-            "radial-gradient(circle at 70% 40%, oklch(0.78 0.2 350 / 0.55), oklch(0.78 0.2 350 / 0) 65%)",
+            "radial-gradient(circle at 70% 40%, oklch(0.75 0.25 355 / 0.95), oklch(0.75 0.25 355 / 0) 65%)",
           transform: "translate3d(0, var(--py), 0)",
         }}
       />
 
       {/* CENTER-BOTTOM violet glow */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 bottom-[-12rem] h-[36rem] w-[60rem] rounded-full opacity-60 blur-3xl will-change-transform"
+        className="absolute left-1/2 -translate-x-1/2 bottom-[-14rem] h-[40rem] w-[64rem] rounded-full blur-3xl will-change-transform"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 50%, oklch(0.65 0.25 320 / 0.45), oklch(0.65 0.25 320 / 0) 60%)",
+            "radial-gradient(ellipse at 50% 50%, oklch(0.65 0.28 325 / 0.8), oklch(0.65 0.28 325 / 0) 60%)",
           transform: "translate3d(0, calc(var(--py-fast) * -1), 0)",
         }}
       />
 
-      {/* small accent orb top right */}
+      {/* small accent orb top right (coral) */}
       <div
-        className="absolute right-[12%] top-[8%] h-40 w-40 rounded-full opacity-80 blur-2xl will-change-transform"
+        className="absolute right-[10%] top-[6%] h-56 w-56 rounded-full blur-2xl will-change-transform"
         style={{
           background:
-            "radial-gradient(circle, oklch(0.7 0.22 20 / 0.45), transparent 70%)",
+            "radial-gradient(circle, oklch(0.72 0.24 20 / 0.7), transparent 70%)",
           transform: "translate3d(0, var(--py-fast), 0)",
         }}
       />
 
+      {/* small accent orb mid-left (magenta) */}
+      <div
+        className="absolute left-[8%] top-[55%] h-48 w-48 rounded-full blur-2xl will-change-transform"
+        style={{
+          background:
+            "radial-gradient(circle, oklch(0.65 0.27 340 / 0.7), transparent 70%)",
+          transform: "translate3d(0, calc(var(--py) * -1), 0)",
+        }}
+      />
+
+
       {/* LEFT wave */}
       <svg
-        className="absolute left-0 top-1/4 h-[120%] w-[55%] opacity-[0.18] will-change-transform"
+        className="absolute left-0 top-1/4 h-[120%] w-[55%] opacity-40 will-change-transform"
         viewBox="0 0 600 1200"
         fill="none"
         preserveAspectRatio="none"
@@ -127,7 +138,7 @@ export function AmbientBackground({
 
       {/* RIGHT wave */}
       <svg
-        className="absolute right-0 top-0 h-[120%] w-[55%] opacity-[0.18] will-change-transform"
+        className="absolute right-0 top-0 h-[120%] w-[55%] opacity-40 will-change-transform"
         viewBox="0 0 600 1200"
         fill="none"
         preserveAspectRatio="none"
