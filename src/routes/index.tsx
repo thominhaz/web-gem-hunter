@@ -1,29 +1,60 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/site/Nav";
+import { Hero } from "@/components/site/Hero";
+import { Plans } from "@/components/site/Plans";
+import { Services } from "@/components/site/Services";
+import { Coverage } from "@/components/site/Coverage";
+import { About } from "@/components/site/About";
+import { CTA } from "@/components/site/CTA";
+import { Footer } from "@/components/site/Footer";
+import { WhatsAppFAB } from "@/components/site/WhatsAppFAB";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Portal Itaipu — Internet Fibra Óptica de qualidade no Oeste do PR" },
+      {
+        name: "description",
+        content:
+          "Internet fibra óptica 550MB com Wi-Fi 6, suporte 24h e cobertura em 9 cidades do Oeste do Paraná. 20 anos de experiência. Planos a partir de R$ 109,90.",
+      },
+      { property: "og:title", content: "Portal Itaipu — Internet Fibra Óptica" },
+      {
+        property: "og:description",
+        content:
+          "Fibra óptica de verdade, Wi-Fi 6 incluso e suporte 24h. 20 anos no Oeste do PR.",
+      },
+      { property: "og:type", content: "website" },
+    ],
+    links: [
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap",
+      },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background text-foreground">
+      <Nav />
+      <main>
+        <Hero />
+        <Plans />
+        <Services />
+        <Coverage />
+        <About />
+        <CTA />
+      </main>
+      <Footer />
+      <WhatsAppFAB />
     </div>
   );
 }
