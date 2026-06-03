@@ -15,6 +15,7 @@ export function RevealObserver() {
     if (typeof window === "undefined") return;
 
     const root = document.documentElement;
+    root.classList.remove("reveal-boot");
     root.classList.add("reveal-ready");
 
     const stagger = 80;
