@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Wifi } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import logoAsset from "@/assets/portal-itaipu-logo.png.asset.json";
 import { Link, useRouterState } from "@tanstack/react-router";
 
 const links = [
@@ -36,11 +37,19 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 font-display font-bold text-lg">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
-            <Wifi className="h-4 w-4" />
+        <Link to="/" aria-label="Portal Itaipu — Internet Fibra" className="flex items-center">
+          <span
+            className={`inline-flex items-center rounded-xl transition-all ${
+              scrolled ? "bg-transparent px-0 py-0" : "bg-white/95 shadow-card px-3 py-1.5"
+            }`}
+          >
+            <img
+              src={logoAsset.url}
+              alt="Portal Itaipu"
+              className="h-7 md:h-8 w-auto select-none"
+              draggable={false}
+            />
           </span>
-          <span>Portal <span className="text-gradient-brand">Itaipu</span></span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-muted-foreground">
