@@ -32,24 +32,30 @@ export function Nav() {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border"
-          : "bg-transparent"
+          ? "bg-background/70 backdrop-blur-xl shadow-[0_8px_30px_-12px_oklch(0.58_0.24_340_/_0.25)] border-b border-[oklch(0.7_0.22_340_/_0.18)]"
+          : "bg-gradient-to-b from-background/40 to-transparent backdrop-blur-sm"
       }`}
     >
+      {/* pink gradient hairline accent */}
+      <div
+        aria-hidden
+        className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent transition-opacity duration-300 ${
+          scrolled ? "opacity-100" : "opacity-0"
+        }`}
+      />
+
       <div className="mx-auto max-w-7xl px-6 lg:px-10 h-16 flex items-center justify-between">
-        <Link to="/" aria-label="Portal Itaipu — Internet Fibra" className="flex items-center">
-          <span
-            className={`inline-flex items-center rounded-xl transition-all ${
-              scrolled ? "bg-transparent px-0 py-0" : "bg-white/95 shadow-card px-3 py-1.5"
-            }`}
-          >
-            <img
-              src={logoAsset.url}
-              alt="Portal Itaipu"
-              className="h-7 md:h-8 w-auto select-none"
-              draggable={false}
-            />
-          </span>
+        <Link to="/" aria-label="Portal Itaipu — Internet Fibra" className="flex items-center group">
+          <img
+            src={logoAsset.url}
+            alt="Portal Itaipu"
+            draggable={false}
+            className="h-8 md:h-9 w-auto select-none transition-transform duration-300 group-hover:scale-[1.03]"
+            style={{
+              filter:
+                "drop-shadow(0 1px 0 rgba(255,255,255,0.6)) drop-shadow(0 6px 14px oklch(0.58 0.24 340 / 0.35))",
+            }}
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-muted-foreground">
