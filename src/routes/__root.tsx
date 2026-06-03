@@ -14,7 +14,6 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppFAB } from "@/components/site/WhatsAppFAB";
-import { RevealObserver } from "@/components/site/RevealObserver";
 
 function NotFoundComponent() {
   return (
@@ -82,13 +81,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { name: "description", content: "Builds a website for an internet provider, extracting brand assets and content from existing URLs." },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:description", content: "Builds a website for an internet provider, extracting brand assets and content from existing URLs." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Lovable App" },
+      { name: "twitter:description", content: "Builds a website for an internet provider, extracting brand assets and content from existing URLs." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3817c385-7ffd-4ecb-b6a4-b7746371264e/id-preview-d0ee50fd--c2aa31da-cbc6-4f50-80e3-086595e0af0c.lovable.app-1780497861724.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3817c385-7ffd-4ecb-b6a4-b7746371264e/id-preview-d0ee50fd--c2aa31da-cbc6-4f50-80e3-086595e0af0c.lovable.app-1780497861724.png" },
     ],
     links: [
       {
@@ -129,7 +132,6 @@ function RootComponent() {
         </main>
         <Footer />
         <WhatsAppFAB />
-        <RevealObserver />
       </div>
     </QueryClientProvider>
   );
