@@ -43,7 +43,7 @@ export function AmbientBackground({
     <div
       ref={ref}
       aria-hidden
-      className={`pointer-events-none absolute inset-0 -z-10 overflow-hidden ${className}`}
+      className={`pointer-events-none absolute inset-0 z-0 overflow-hidden ${className}`}
       style={{
         // defaults so the layout is stable before scroll fires
         ["--py" as any]: "0px",
