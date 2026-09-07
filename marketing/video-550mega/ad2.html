@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Portal Itaipu Ads</title>
+<style>
+@font-face{font-family:'Bebas';src:url(fonts/BebasNeue-400-latin.woff2) format('woff2');}
+@font-face{font-family:'Sora';font-weight:400;src:url(fonts/Sora-400-latin.woff2) format('woff2');}
+@font-face{font-family:'Sora';font-weight:600;src:url(fonts/Sora-600-latin.woff2) format('woff2');}
+@font-face{font-family:'Sora';font-weight:700;src:url(fonts/Sora-700-latin.woff2) format('woff2');}
+@font-face{font-family:'Sora';font-weight:800;src:url(fonts/Sora-800-latin.woff2) format('woff2');}
+:root{--purple:#1c0533;--mag:#f0007a;--mag2:#ff2f95;--lime:#c6e01e;--blue:#00a8e8;--wa:#25d366}
+html,body{margin:0;padding:0;background:var(--purple)}
+body{width:1080px;height:1920px;overflow:hidden;font-family:'Sora',sans-serif;color:#fff}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--purple)}
+.bg{position:absolute;inset:0;overflow:hidden}
+.orb{position:absolute;border-radius:50%;filter:blur(40px)}
+.orb-m{width:1500px;height:1500px;left:-700px;top:900px;background:radial-gradient(circle,rgba(240,0,122,.95) 0%,rgba(240,0,122,.55) 30%,rgba(240,0,122,0) 68%)}
+.orb-p{width:1300px;height:1300px;left:300px;top:-500px;background:radial-gradient(circle,rgba(120,40,200,.9) 0%,rgba(90,20,160,.5) 35%,rgba(60,10,110,0) 70%)}
+.orb-b{width:700px;height:700px;left:650px;top:1200px;background:radial-gradient(circle,rgba(0,168,232,.35) 0%,rgba(0,168,232,0) 70%)}
+#flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 55%,rgba(255,80,170,.9) 0%,rgba(255,80,170,0) 60%);opacity:0}
+.streak{position:absolute;left:0;top:0;width:1500px;height:5px;border-radius:4px;transform-origin:0 50%;
+ background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(198,224,30,0) 25%,rgba(198,224,30,.9) 48%,#fff 52%,rgba(255,47,149,.9) 56%,rgba(255,47,149,0) 78%);
+ box-shadow:0 0 18px rgba(255,120,200,.6);filter:blur(.6px)}
+.pt{position:absolute;border-radius:50%;background:#fff}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 45%,rgba(10,0,20,.55) 100%)}
+.grain{position:absolute;inset:0;opacity:.06;background-image:radial-gradient(rgba(255,255,255,.6) 1px,transparent 1px);background-size:6px 6px;mix-blend-mode:overlay}
+#logoTop{position:absolute;left:390px;top:300px;width:300px;opacity:0}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden}
+.bebas{font-family:'Bebas',sans-serif;line-height:.86;letter-spacing:.01em}
+.center{position:absolute;left:0;width:1080px;text-align:center}
+.bar{position:absolute;left:540px;height:8px;background:var(--lime);border-radius:4px;transform:translateX(-50%)}
+.kicker{font-weight:700;font-size:38px;letter-spacing:.22em;color:var(--lime);text-transform:uppercase}
+.sub{font-weight:400;font-size:40px;color:rgba(255,255,255,.9);line-height:1.3}
+.sub b{color:var(--lime);font-weight:700}
+.chip{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:16px;padding:22px 40px;border-radius:999px;
+ background:rgba(255,255,255,.09);border:2px solid rgba(255,255,255,.25);font-weight:600;font-size:36px;white-space:nowrap}
+.chip svg{width:44px;height:44px;flex:none}
+.ring{position:absolute;left:170px;top:600px;width:740px;height:740px}
+.num{position:absolute;left:0;width:1080px;top:770px;text-align:center;font-size:360px;color:#fff;text-shadow:0 0 50px rgba(255,255,255,.25),0 14px 40px rgba(0,0,0,.4)}
+.mega{position:absolute;left:0;width:1080px;top:1105px;text-align:center;font-size:120px;color:var(--mag2);text-shadow:0 0 30px rgba(255,47,149,.6)}
+.price{position:absolute;left:0;width:1080px;display:flex;justify-content:center;align-items:flex-start;gap:14px}
+.price .rs{font-size:130px;color:var(--lime);margin-top:34px}
+.price .big{font-size:470px;color:#fff;text-shadow:0 0 60px rgba(255,47,149,.55),0 16px 50px rgba(0,0,0,.45)}
+.price .cents{font-size:180px;color:#fff;margin-top:34px;text-shadow:0 0 30px rgba(255,47,149,.45)}
+.price.sm .rs{font-size:110px;margin-top:28px}.price.sm .big{font-size:390px}.price.sm .cents{font-size:150px;margin-top:28px}
+.mes{position:absolute;left:0;width:1080px;text-align:center;font-weight:600;font-size:46px;color:rgba(255,255,255,.85)}
+.megarow{position:absolute;left:0;width:1080px;display:flex;justify-content:center;align-items:baseline;gap:22px}
+.megarow .n{font-size:300px;color:#fff;text-shadow:0 0 50px rgba(255,255,255,.2),0 14px 40px rgba(0,0,0,.4)}
+.megarow .m{font-size:120px;color:var(--mag2);text-shadow:0 0 30px rgba(255,47,149,.6)}
+.stamp{position:absolute;left:150px;top:790px;width:780px;height:340px;border-radius:44px;background:var(--lime);color:var(--purple);
+ display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 90px rgba(198,224,30,.45)}
+.stamp .l1{font-size:120px;line-height:.9}.stamp .l2{font-size:200px;line-height:.85;margin-top:6px}
+.wave{position:absolute;left:150px;top:790px;width:780px;height:340px;border-radius:44px;border:6px solid var(--lime);box-sizing:border-box;opacity:0}
+.trow{position:absolute;left:110px;width:860px;display:flex;align-items:center;gap:34px}
+.trow .big{font-family:'Bebas',sans-serif;font-size:170px;line-height:.85;color:var(--lime);width:270px;text-align:right;flex:none;text-shadow:0 0 30px rgba(198,224,30,.35)}
+.trow .txt{font-weight:600;font-size:44px;line-height:1.15;border-left:5px solid var(--mag2);padding-left:30px;color:#fff}
+.logoBig{position:absolute;left:150px;top:520px;width:780px}
+.tag{position:absolute;left:0;width:1080px;top:880px;text-align:center;font-weight:600;font-size:50px;color:#fff}
+.tag b{color:var(--lime);font-weight:800}
+.wa{position:absolute;left:50%;top:1010px;transform:translateX(-50%);display:flex;align-items:center;gap:22px;padding:30px 54px;border-radius:999px;
+ background:var(--wa);color:#fff;font-weight:700;font-size:44px;white-space:nowrap;box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 60px rgba(37,211,102,.45)}
+.wa svg{width:64px;height:64px;fill:#fff;flex:none}
+.fone{position:absolute;left:0;width:1080px;top:1180px;text-align:center;font-size:96px;color:#fff;letter-spacing:.03em}
+.site{position:absolute;left:0;width:1080px;top:1310px;text-align:center;font-weight:600;font-size:34px;color:rgba(255,255,255,.7);letter-spacing:.06em}
+</style></head><body>
+<div id="stage">
+ <div class="bg">
+  <div class="orb orb-p" id="orbP"></div><div class="orb orb-m" id="orbM"></div><div class="orb orb-b" id="orbB"></div>
+  <div id="streaks"></div><div id="particles"></div><div id="flash"></div><div class="vig"></div><div class="grain"></div>
+ </div>
+ <img id="logoTop" src="logo-white.png" alt="">
+ <div id="scenes"></div>
+</div>
+<script>
+const W=1080,H=1920;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const E={linear:t=>t,outCubic:t=>1-Math.pow(1-t,3),inCubic:t=>t*t*t,outQuint:t=>1-Math.pow(1-t,5),
+ outExpo:t=>t>=1?1:1-Math.pow(2,-10*t),outBack:t=>{const c=1.70158,d=c+1;return 1+d*Math.pow(t-1,3)+c*Math.pow(t-1,2)}};
+const P=(t,a,b,e='outCubic')=>E[e](clamp((t-a)/(b-a),0,1));
+const L=(a,b,u)=>a+(b-a)*u;
+const $=id=>document.getElementById(id);
+function st(el,o){if(o.o!==undefined)el.style.opacity=clamp(o.o,0,1);const tr=[];if(o.x||o.y)tr.push(`translate(${o.x||0}px,${o.y||0}px)`);
+ if(o.s!==undefined)tr.push(`scale(${o.s})`);if(o.r)tr.push(`rotate(${o.r}deg)`);if(tr.length)el.style.transform=tr.join(' ');
+ if(o.b!==undefined)el.style.filter=o.b>0.01?`blur(${o.b}px)`:'none';}
+function env(t,[a,b],din=.45,dout=.3){const en=P(t,a,a+din,'outQuint'),ex=P(t,b-dout,b,'inCubic');return {en,ex,a:en*(1-ex),on:t>=a-.001&&t<=b+.001};}
+function rise(el,t,t0,d=.5,dy=70){const u=P(t,t0,t0+d,'outQuint');st(el,{o:u,y:L(dy,0,u),b:L(14,0,u)});}
+function rnd(seed){let x=Math.sin(seed*9301+49297)*233280;return x-Math.floor(x);}
+const ICON={
+ wifi:'<svg viewBox="0 0 48 48" fill="none" stroke="#c6e01e" stroke-width="4" stroke-linecap="round"><path d="M6 19c10-10 26-10 36 0"/><path d="M12 26c7-7 17-7 24 0"/><path d="M18 33c3.5-3.5 8.5-3.5 12 0"/><circle cx="24" cy="40" r="2.5" fill="#c6e01e" stroke="none"/></svg>',
+ shield:'<svg viewBox="0 0 48 48" fill="none" stroke="#c6e01e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l16 6v12c0 10-7 18-16 22C15 40 8 32 8 22V10z"/><path d="M16 24l6 6 11-12"/></svg>',
+ check:'<svg viewBox="0 0 48 48" fill="none" stroke="#c6e01e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="19"/><path d="M15 24l6 6 12-13"/></svg>',
+ clock:'<svg viewBox="0 0 48 48" fill="none" stroke="#c6e01e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="19"/><path d="M24 12v13l8 5"/></svg>',
+ pin:'<svg viewBox="0 0 48 48" fill="none" stroke="#c6e01e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 44s14-13 14-24a14 14 0 10-28 0c0 11 14 24 14 24z"/><circle cx="24" cy="20" r="5"/></svg>',
+ wa:'<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>'};
+const chip=(id,top,icon,text)=>`<div class="chip" id="${id}" style="top:${top}px">${ICON[icon]||''}<span>${text}</span></div>`;
+const colOf=c=>c==='mag'?'var(--mag2)':c==='lime'?'var(--lime)':'#fff';
+const glowOf=c=>(c==='mag'?'0 0 40px rgba(255,47,149,.55),':c==='lime'?'0 0 40px rgba(198,224,30,.45),':'')+'0 10px 40px rgba(0,0,0,.35)';
+
+// ---------- background ----------
+const streaks=[],parts=[];
+(function(){const sc=$('streaks');for(let i=0;i<9;i++){const d=document.createElement('div');d.className='streak';sc.appendChild(d);
+  streaks.push({el:d,speed:L(900,1700,rnd(i+1)),off:rnd(i+11)*4000,y:L(-200,2100,rnd(i+21)),len:L(900,1600,rnd(i+31)),op:L(.35,.9,rnd(i+41)),ang:L(-40,-28,rnd(i+51))});}
+ const pc=$('particles');for(let i=0;i<60;i++){const d=document.createElement('div');d.className='pt';pc.appendChild(d);const c=rnd(i+61);
+  d.style.background=c<.5?'#fff':c<.8?'#c6e01e':'#ff2f95';const sz=L(3,11,rnd(i+71));d.style.width=d.style.height=sz+'px';d.style.boxShadow=`0 0 ${sz*2}px ${d.style.background}`;
+  parts.push({el:d,x:rnd(i+81)*W,speed:L(40,140,rnd(i+91)),ph:rnd(i+101)*3000,op:L(.15,.7,rnd(i+111)),sw:L(20,70,rnd(i+121)),f:L(.2,.6,rnd(i+131))});}})();
+function bg(t){st($('orbM'),{x:Math.sin(t*.35)*60,y:Math.cos(t*.27)*50});st($('orbP'),{x:Math.cos(t*.3)*70,y:Math.sin(t*.22)*60});st($('orbB'),{x:Math.sin(t*.4+2)*90,y:Math.cos(t*.3+1)*40});
+ for(const s of streaks){const per=W+2400;const x=((t*s.speed+s.off)%per)-1200;s.el.style.width=s.len+'px';s.el.style.transform=`translate(${x}px,${s.y}px) rotate(${s.ang}deg)`;s.el.style.opacity=s.op;}
+ for(const p of parts){const per=H+300;const y=H+150-((t*p.speed+p.ph)%per);const x=p.x+Math.sin(t*p.f+p.ph)*p.sw;p.el.style.transform=`translate(${x}px,${y}px)`;p.el.style.opacity=p.op*(.6+.4*Math.sin(t*2+p.ph));}}
+
+// ---------- scene builders: return {html, render(t,a,b,e)} ----------
+const B={
+ hook(p,i){const n=p.lines.length,size=p.size||(n>=3?150:180),lh=size*.9,gap=14,total=n*lh+(n-1)*gap;const y=(p.y||930)-total/2-(p.sub?40:0);let html='';
+  p.lines.forEach((l,k)=>{html+=`<div class="center bebas" id="h${i}_${k}" style="top:${y+k*(lh+gap)}px;font-size:${size}px;color:${colOf(l.c)};text-shadow:${glowOf(l.c)}">${l.t}</div>`});
+  const yb=y+total+50;html+=`<div class="bar" id="h${i}_bar" style="top:${yb}px;width:0"></div>`;if(p.sub)html+=`<div class="center sub" id="h${i}_sub" style="top:${yb+50}px">${p.sub}</div>`;
+  return {html,render(t,a,b,e){p.lines.forEach((l,k)=>{const el=$(`h${i}_${k}`);rise(el,t,a+.02+k*.14,.5);
+    if(l.glitch){const g=t>a+.8&&t<a+1.1,j=g?Math.sin(t*137)*7:0;if(g){el.style.transform+=` translate(${j}px,0)`;el.style.textShadow=`${-j}px 0 0 rgba(198,224,30,.8), ${j}px 0 0 rgba(0,168,232,.8)`;}else el.style.textShadow=glowOf(l.c);}});
+   $(`h${i}_bar`).style.width=L(0,140,P(t,a+.5,a+.9))+'px';if(p.sub)rise($(`h${i}_sub`),t,a+.7,.45,40);st($(`sc${i}`),{s:L(1,1.05,e.ex)});}};},
+ speed(p,i){const html=`<div class="center kicker" id="s${i}_k" style="top:520px">${p.kicker||'Fibra óptica de verdade'}</div>
+  <svg class="ring" id="s${i}_ring" viewBox="0 0 740 740"><defs><linearGradient id="g${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff2f95"/><stop offset="1" stop-color="#c6e01e"/></linearGradient>
+  <filter id="gl${i}" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <circle cx="370" cy="370" r="340" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="22"/>
+  <circle id="s${i}_fill" cx="370" cy="370" r="340" fill="none" stroke="url(#g${i})" stroke-width="22" stroke-linecap="round" filter="url(#gl${i})" transform="rotate(-90 370 370)" stroke-dasharray="2136.3" stroke-dashoffset="2136.3"/></svg>
+  <div class="bebas num" id="s${i}_num">0</div><div class="bebas mega" id="s${i}_mega">MEGA</div>${chip(`s${i}_chip`,1420,p.chipIcon||'wifi',p.chip||'Roteador Wi-Fi 6 incluso')}`;
+  return {html,render(t,a,b,e){rise($(`s${i}_k`),t,a,.4,30);const u=P(t,a+.1,a+1.5,'outExpo');$(`s${i}_fill`).setAttribute('stroke-dashoffset',(2136.3*(1-u)).toFixed(1));
+   st($(`s${i}_ring`),{o:P(t,a,a+.3),s:L(.8,1,P(t,a,a+.5,'outBack'))});$(`s${i}_num`).textContent=Math.round(550*u);
+   const punch=1+.1*Math.sin(Math.PI*P(t,a+1.35,a+1.75,'linear'));st($(`s${i}_num`),{o:P(t,a,a+.25),s:L(.7,1,P(t,a,a+.5,'outBack'))*punch});
+   rise($(`s${i}_mega`),t,a+.25,.45,40);rise($(`s${i}_chip`),t,a+.9,.5,40);$(`s${i}_chip`).style.transform+=' translateX(-50%)';st($(`sc${i}`),{s:L(1,1.06,e.ex)});}};},
+ price(p,i){const html=`<div class="center kicker" id="p${i}_k" style="top:560px">${p.kicker||'Por apenas'}</div>
+  <div class="price bebas" id="p${i}_pr" style="top:720px"><span class="rs">R$</span><span class="big">109</span><span class="cents">,90</span></div>
+  <div class="mes" id="p${i}_mes" style="top:1140px">por mês</div><div class="bar" id="p${i}_bar" style="top:1250px;width:0"></div>
+  <div class="center sub" id="p${i}_sub" style="top:1300px">${p.sub||'<b>550 mega</b> de fibra na sua casa'}</div>`;
+  return {html,render(t,a,b,e){$('flash').style.opacity=.9*(1-P(t,a,a+.6));rise($(`p${i}_k`),t,a,.4,30);const pop=P(t,a+.05,a+.6,'outBack');
+   st($(`p${i}_pr`),{o:P(t,a+.05,a+.2),s:L(.5,1,pop),y:L(40,0,pop)});$(`p${i}_pr`).style.filter=`drop-shadow(0 0 ${28+12*Math.sin(t*4)}px rgba(255,47,149,.55))`;
+   rise($(`p${i}_mes`),t,a+.45,.4,30);$(`p${i}_bar`).style.width=L(0,140,P(t,a+.7,a+1.1))+'px';rise($(`p${i}_sub`),t,a+.85,.45,40);st($(`sc${i}`),{s:L(1,1.06,e.ex)});}};},
+ offer(p,i){const html=`<div class="center kicker" id="o${i}_k" style="top:500px">${p.kicker||'Fibra óptica de verdade'}</div>
+  <div class="megarow bebas" id="o${i}_row" style="top:590px"><span class="n">550</span><span class="m">MEGA</span></div>
+  <div class="center kicker" id="o${i}_k2" style="top:880px">por apenas</div>
+  <div class="price sm bebas" id="o${i}_pr" style="top:940px"><span class="rs">R$</span><span class="big">109</span><span class="cents">,90</span></div>
+  <div class="mes" id="o${i}_mes" style="top:1290px">por mês</div>${chip(`o${i}_chip`,1420,p.chipIcon||'wifi',p.chip||'Roteador Wi-Fi 6 incluso')}`;
+  return {html,render(t,a,b,e){rise($(`o${i}_k`),t,a,.4,30);const pop=P(t,a+.08,a+.6,'outBack');st($(`o${i}_row`),{o:P(t,a+.08,a+.25),s:L(.6,1,pop),y:L(40,0,pop)});
+   const t2=a+.75;$('flash').style.opacity=.9*(1-P(t,t2,t2+.6))*(t>=t2?1:0);rise($(`o${i}_k2`),t,t2-.2,.4,30);const pop2=P(t,t2,t2+.55,'outBack');
+   st($(`o${i}_pr`),{o:P(t,t2,t2+.15),s:L(.5,1,pop2),y:L(40,0,pop2)});$(`o${i}_pr`).style.filter=`drop-shadow(0 0 ${28+12*Math.sin(t*4)}px rgba(255,47,149,.55))`;
+   rise($(`o${i}_mes`),t,t2+.4,.4,30);rise($(`o${i}_chip`),t,t2+.7,.5,40);$(`o${i}_chip`).style.transform+=' translateX(-50%)';st($(`sc${i}`),{s:L(1,1.06,e.ex)});}};},
+ stamp(p,i){const html=`<div class="center kicker" id="t${i}_k" style="top:600px">${p.kicker||'E ainda'}</div><div class="wave" id="t${i}_w"></div>
+  <div class="stamp bebas" id="t${i}_s"><div class="l1">${p.l1||'INSTALAÇÃO'}</div><div class="l2">${p.l2||'GRÁTIS'}</div></div>
+  ${p.sub?`<div class="center sub" id="t${i}_sub" style="top:1280px">${p.sub}</div>`:chip(`t${i}_chip`,1300,p.chipIcon||'shield',p.chip||'Suporte local 24h')}`;
+  return {html,render(t,a,b,e){rise($(`t${i}_k`),t,a,.35,30);const u=P(t,a+.15,a+.5,'outExpo'),hit=P(t,a+.45,a+.9,'linear');const shake=(1-hit)*Math.sin(t*120)*8*(t>a+.45?1:0);
+   st($(`t${i}_s`),{o:P(t,a+.15,a+.25),s:L(2.6,1,u),r:-6,x:shake,y:shake*.5});const w=P(t,a+.45,a+1.3);st($(`t${i}_w`),{o:.8*(1-w),s:L(1,2.1,w),r:-6});
+   if(p.sub)rise($(`t${i}_sub`),t,a+.9,.5,40);else{rise($(`t${i}_chip`),t,a+.9,.5,40);$(`t${i}_chip`).style.transform+=' translateX(-50%)';}st($(`sc${i}`),{s:L(1,1.06,e.ex)});}};},
+ trust(p,i){let html=`<div class="center kicker" id="r${i}_k" style="top:540px">${p.kicker||'Por que a Portal Itaipu?'}</div>`;
+  p.rows.forEach((r,k)=>{html+=`<div class="trow" id="r${i}_${k}" style="top:${660+k*250}px"><div class="big">${r.big}</div><div class="txt">${r.text}</div></div>`});
+  return {html,render(t,a,b,e){rise($(`r${i}_k`),t,a,.4,30);p.rows.forEach((r,k)=>{const el=$(`r${i}_${k}`);rise(el,t,a+.35+k*.55,.55,50);const pu=1+.06*Math.sin(Math.PI*P(t,a+.35+k*.55+.3,a+.35+k*.55+.6,'linear'));el.querySelector('.big').style.transform=`scale(${pu})`;});
+   st($(`sc${i}`),{s:L(1,1.05,e.ex)});}};},
+ cta(p,i){const html=`<img class="logoBig" id="c${i}_logo" src="logo-white.png" alt=""><div class="tag" id="c${i}_tag">${p.tag||'Tenha <b>conexão de verdade</b>.'}</div>
+  <div class="wa" id="c${i}_wa">${ICON.wa}<span>${p.button||'Chama a gente no WhatsApp'}</span></div><div class="fone bebas" id="c${i}_fone">(45) 3559-1665</div><div class="site" id="c${i}_site">portalitaipu.com.br</div>`;
+  return {html,render(t,a,b,e){const lu=P(t,a,a+.7,'outQuint');st($(`c${i}_logo`),{o:lu,s:L(.85,1,lu),b:L(12,0,lu)});rise($(`c${i}_tag`),t,a+.4,.5,40);
+   const wu=P(t,a+.7,a+1.3,'outBack'),pulse=t>a+1.3?1+.035*Math.sin((t-a-1.3)*2*Math.PI*1.1):1;const wa=$(`c${i}_wa`);wa.style.opacity=P(t,a+.7,a+.85);
+   wa.style.transform=`translateX(-50%) translateY(${L(60,0,wu)}px) scale(${L(.7,1,wu)*pulse})`;rise($(`c${i}_fone`),t,a+1.05,.5,40);rise($(`c${i}_site`),t,a+1.3,.5,30);}};}
+};
+
+let SCENES=[],TL=[],CTA_START=99;
+window.setVariant=function(v,tl){TL=tl;SCENES=[];const host=$('scenes');host.innerHTML='';
+ v.scenes.forEach((s,i)=>{const b=B[s.type](s,i);const sec=document.createElement('section');sec.className='scene';sec.id='sc'+i;sec.innerHTML=b.html;host.appendChild(sec);SCENES.push(b);if(s.type==='cta')CTA_START=tl[i][0];});};
+window.seek=function(t){bg(t);$('flash').style.opacity=0;
+ const lu=P(t,.55,1.0,'outQuint')*(1-P(t,CTA_START-.3,CTA_START,'inCubic'));st($('logoTop'),{o:(t>=.55&&t<CTA_START)?lu:0,y:L(-30,0,lu)});
+ SCENES.forEach((b,i)=>{const r=TL[i],e=env(t,r);const sec=$('sc'+i);sec.style.visibility=e.on?'visible':'hidden';sec.style.opacity=e.on?e.a:0;if(e.on)b.render(t,r[0],r[1],e);});};
+</script></body></html>

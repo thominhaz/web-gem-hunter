@@ -32,7 +32,47 @@ com locução em pt-BR e trilha instrumental. Cores e logo seguem a identidade d
 
 Confirmar antes de publicar: preço, velocidade, "instalação grátis", "Wi-Fi 6 incluso" e "Suporte 24h" (valores vieram do briefing e do site).
 
-## Regenerar
+## Variações com outros gatilhos (A/B)
+
+Mesmo motor (`ad2.html` + `build.py`), definidas em `variants/*.json`. Rode `python3 build.py variants/<arquivo>.json` para regenerar uma variação (`stills` como 2º argumento só gera quadros de teste).
+
+### V2 — Oferta direta — `out/v2-oferta-direta-9x16.mp4` (14 s)
+
+Ancoragem de preço: o primeiro quadro já é "550 MEGA por R$ 109,90". Sem gancho de dor; quem está comparando preço decide em 1 s.
+
+| Tempo | Cena | Locução |
+|---|---|---|
+| 0.0–3.7 s | 550 MEGA + R$ 109,90 por mês + chip "Roteador Wi-Fi 6 incluso" | "Quinhentos e cinquenta mega por cento e nove e noventa por mês!" |
+| 3.7–6.2 s | Selo INSTALAÇÃO GRÁTIS + chip "Fique online em até 24h" | "E a instalação é grátis!" |
+| 6.2–9.8 s | Contador 0 → 550 MEGA + chip "Suporte local 24h" | "Fibra óptica de verdade, com suporte de gente daqui." |
+| 9.8–14.2 s | Logo, "Tenha conexão de verdade.", botão WhatsApp, (45) 3559-1665 | "Chama a gente no WhatsApp. Portal Itaipu." |
+
+### V3 — Gente daqui — `out/v3-gente-daqui-9x16.mp4` (16 s)
+
+Prova social e pertencimento: "Internet de gente daqui", 20 anos, 9 cidades, suporte técnico local. Diferencia de operadora grande.
+
+| Tempo | Cena | Locução |
+|---|---|---|
+| 0.0–2.4 s | INTERNET DE / GENTE DAQUI — Há 20 anos conectando o oeste do Paraná. | "Internet de gente daqui." |
+| 2.4–7.0 s | 20 anos de telecomunicações; 9 cidades do oeste do Paraná; 24h suporte técnico local | "Vinte anos de telecomunicações, nove cidades e suporte técnico local." |
+| 7.0–11.8 s | 550 MEGA + R$ 109,90 por mês + chip "Instalação grátis" | "Quinhentos e cinquenta mega por cento e nove e noventa por mês, com instalação grátis." |
+| 11.8–16.2 s | Logo, "Tenha conexão de verdade.", botão WhatsApp, (45) 3559-1665 | "Chama a gente no WhatsApp. Portal Itaipu." |
+
+### V4 — Perda + urgência — `out/v4-perda-urgencia-9x16.mp4` (17 s)
+
+Aversão à perda ("Você ainda paga por internet que trava?") e urgência ("Fique online em até 24h").
+
+| Tempo | Cena | Locução |
+|---|---|---|
+| 0.0–2.8 s | VOCÊ AINDA PAGA / POR INTERNET / QUE TRAVA? — Isso tem conserto. | "Você ainda paga por internet que trava?" |
+| 2.8–6.4 s | 550 MEGA + R$ 109,90 por mês + chip "Roteador Wi-Fi 6 incluso" | "Quinhentos e cinquenta mega por cento e nove e noventa por mês." |
+| 6.4–8.9 s | Selo INSTALAÇÃO GRÁTIS + chip "Suporte local 24h" | "E a instalação é grátis!" |
+| 8.9–12.3 s | FIQUE ONLINE / EM ATÉ 24H — Sem esperar semanas pela instalação. | "Contrata hoje e fica online em até vinte e quatro horas." |
+| 12.3–16.7 s | Logo, "Tenha conexão de verdade.", botão WhatsApp, (45) 3559-1665 | "Chama a gente no WhatsApp. Portal Itaipu." |
+
+Sugestão de teste: rodar as 4 versões no mesmo conjunto de anúncios com orçamento igual por 3–4 dias e manter as 2 de menor custo por conversa iniciada no WhatsApp.
+
+## Regenerar (V1)
 
 ```bash
 pip install imageio-ffmpeg edge-tts pillow numpy   # ffmpeg com libx264/aac + TTS

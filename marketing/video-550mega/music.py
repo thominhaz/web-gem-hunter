@@ -1,5 +1,6 @@
 import numpy as np, wave
-SR=44100; BPM=126; BEAT=60/BPM; DUR=16.4
+import os
+SR=44100; BPM=126; BEAT=60/BPM; DUR=float(os.environ.get('MUSIC_DUR','16.4'))
 N=int(SR*DUR); t=np.arange(N)/SR
 out=np.zeros(N)
 def env(len_s, decay):  # exponential decay envelope
@@ -115,6 +116,6 @@ mix=np.tanh(mix*0.9)
 fade=np.ones(N); nf=int(SR*0.4); fade[-nf:]=np.linspace(1,0,nf); mix*=fade
 mix=mix/np.max(np.abs(mix))*0.89
 pcm=(mix*32767).astype(np.int16)
-with wave.open('music.wav','wb') as w:
+with wave.open(os.environ.get('MUSIC_OUT','music.wav'),'wb') as w:
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR); w.writeframes(pcm.tobytes())
 print('music.wav', DUR, 'bars', nbars, 'hit at', round(last,2))
