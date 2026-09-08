@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Post familia</title>
+<style>
+@font-face{font-family:'Bebas';src:url(../video-550mega/fonts/BebasNeue-400-latin.woff2) format('woff2');}
+@font-face{font-family:'Sora';font-weight:600;src:url(../video-550mega/fonts/Sora-600-latin.woff2) format('woff2');}
+@font-face{font-family:'Sora';font-weight:700;src:url(../video-550mega/fonts/Sora-700-latin.woff2) format('woff2');}
+:root{--purple:#1c0533;--mag:#ff2f95;--lime:#c6e01e;--gold1:#ffe28a;--gold2:#f5c542;--gold3:#d99b1c}
+html,body{margin:0;padding:0;background:var(--purple)}
+body{width:1080px;height:1080px;overflow:hidden;font-family:'Sora',sans-serif;color:#fff}
+#stage{position:relative;width:1080px;height:1080px;overflow:hidden;background:var(--purple)}
+#bg{position:absolute;inset:0;width:1080px;height:1080px;object-fit:cover;object-position:var(--bgpos,50% 50%)}
+.g1{position:absolute;inset:0;background:#4a0f7a;mix-blend-mode:multiply;opacity:var(--g1,.28)}
+.g2{position:absolute;inset:0;background:radial-gradient(circle at 0% 50%,rgba(240,0,122,.9) 0%,rgba(240,0,122,0) 48%);mix-blend-mode:screen;opacity:var(--g2,.5)}
+.g3{position:absolute;inset:0;background:radial-gradient(circle at 100% 0%,rgba(140,60,220,.8) 0%,rgba(140,60,220,0) 50%);mix-blend-mode:screen;opacity:var(--g3,.45)}
+.tint{position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,5,51,.7) 0%,rgba(28,5,51,.35) 30%,rgba(28,5,51,0) 50%,rgba(28,5,51,.3) 85%,rgba(28,5,51,.7) 100%)}
+.tintc{position:absolute;inset:0;background:radial-gradient(ellipse 60% 24% at 50% 34%,rgba(20,4,40,.55) 0%,rgba(20,4,40,0) 100%)}
+.mag{position:absolute;inset:0;background:radial-gradient(circle at 100% 100%,rgba(240,0,122,.22) 0%,rgba(240,0,122,0) 45%);mix-blend-mode:screen}
+.bebas{font-family:'Bebas',sans-serif;line-height:.88;letter-spacing:.012em}
+.center{position:absolute;left:108px;width:864px;text-align:center}
+#h1{top:126px;font-size:118px;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.6),0 0 40px rgba(0,0,0,.35)}
+#h2{top:212px;font-size:112px;color:var(--mag);text-shadow:0 4px 30px rgba(0,0,0,.6),0 0 40px rgba(255,47,149,.35)}
+#bar{position:absolute;left:540px;top:258px;width:120px;height:8px;border-radius:4px;background:var(--lime);transform:translateX(-50%)}
+#box{position:absolute;left:50%;top:var(--boxtop,296px);transform:translateX(-50%);padding:22px 44px 18px;border-radius:20px;white-space:nowrap;
+ background:linear-gradient(180deg,var(--gold1) 0%,var(--gold2) 48%,var(--gold3) 100%);color:var(--purple);font-size:86px;
+ box-shadow:0 22px 60px rgba(0,0,0,.55),0 0 70px rgba(245,197,66,.35),inset 0 2px 0 rgba(255,255,255,.65),inset 0 -3px 0 rgba(120,80,0,.25)}
+#price{top:var(--pricetop,440px);font-weight:700;font-size:31px;letter-spacing:.09em;color:var(--lime);text-shadow:0 2px 18px rgba(0,0,0,.85)}
+#foot{top:var(--foottop,924px);font-weight:600;font-size:28px;letter-spacing:.07em;white-space:nowrap;color:rgba(255,255,255,.92);text-shadow:0 2px 18px rgba(0,0,0,.8)}
+#guide{position:absolute;left:108px;top:108px;width:862px;height:862px;border:1px dashed rgba(255,255,255,.5);display:none}
+</style></head><body>
+<div id="stage">
+ <img id="bg" src="bg.jpg" alt="">
+ <div class="g1"></div><div class="g2"></div><div class="g3"></div><div class="tint"></div><div class="tintc"></div><div class="mag"></div>
+ <div class="center bebas" id="h1"><span>550 MEGA DE FIBRA</span></div>
+ 
+ <div id="bar"></div>
+ <div class="bebas" id="box">R$ 109,90 POR MÊS</div>
+ <div class="center" id="price"><span>WI-FI 6 INCLUSO · INSTALAÇÃO GRÁTIS</span></div>
+ <div class="center" id="foot"><span>ATIVAÇÃO EM ATÉ 24 HORAS · SEM TAXA DE ADESÃO</span></div>
+ <div id="guide"></div>
+</div>
+</body></html>
